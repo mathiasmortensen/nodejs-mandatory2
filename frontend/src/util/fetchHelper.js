@@ -1,28 +1,33 @@
-import toastr from 'toastr';
+import toastr from "toastr";
 export async function fetchGet(endpoint) {
-    try {
-        const response = await fetch(`${import.meta.env.VITE_BASE_URL}${endpoint}`, {
-            credentials: 'include'
-        });
-        return response;
-    } catch(error) {
-        toastr.error('Der skete en fejl under GET');
-    }
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_BASE_URL}${endpoint}`,
+      {
+        credentials: "include",
+      },
+    );
+    return response;
+  } catch {
+    toastr.error("Der skete en fejl under GET");
+  }
 }
 
 export async function fetchPost(endpoint, body) {
-    try{
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}${endpoint}`, {
-        method: 'POST',
-        credentials: 'include',
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_BASE_URL}${endpoint}`,
+      {
+        method: "POST",
+        credentials: "include",
         headers: {
-            'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(body)
-    });
+        body: JSON.stringify(body),
+      },
+    );
     return response;
-
-    }catch(error){
-        toastr.error('Der skete en fejl under POST');
-    }
+  } catch {
+    toastr.error("Der skete en fejl under POST");
+  }
 }

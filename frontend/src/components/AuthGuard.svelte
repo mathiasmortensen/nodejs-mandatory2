@@ -1,12 +1,12 @@
 <script>
-  import { auth } from '../util/auth.svelte.js';
-  import { navigate } from 'svelte5-router';
+  import { auth } from "../util/auth.svelte.js";
+  import { navigate } from "svelte5-router";
 
   let { children } = $props();
 
   $effect(() => {
     if (auth.readyToRedirect && !auth.isAuthenticated) {
-      navigate('/login', { replace: true });
+      navigate("/login", { replace: true });
     }
   });
 </script>

@@ -42,8 +42,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, maxAge: 15 * 60 * 1000 },
-  });
-)
+  })
+);
 
 app.use('/auth', authRouter);
 

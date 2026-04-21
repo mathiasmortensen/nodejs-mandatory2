@@ -1,15 +1,15 @@
 <script>
   const raccoonImages = [
-    'raccoon1.jpg',
-    'raccoon2.jpg',
-    'raccoon3.jpg',
-    'raccoon4.jpg',
-    'raccoon5.jpg',
-    'raccoon6.jpg',
-    'raccoon7.webp',
-    'raccoon8.jpg',
-    'raccoon9.webp',
-    'raccoon10.JPG',
+    "raccoon1.jpg",
+    "raccoon2.jpg",
+    "raccoon3.jpg",
+    "raccoon4.jpg",
+    "raccoon5.jpg",
+    "raccoon6.jpg",
+    "raccoon7.webp",
+    "raccoon8.jpg",
+    "raccoon9.webp",
+    "raccoon10.JPG",
   ];
 </script>
 
@@ -22,7 +22,8 @@
     <h1>Raccoon Gallery</h1>
 
     <p>
-      I Europa er det ulovligt at eje en vaskebjørn. Vaskebjørne bliver set som pesten selv...
+      I Europa er det ulovligt at eje en vaskebjørn. Vaskebjørne bliver set som
+      pesten selv...
     </p>
 
     {#each raccoonImages as image, index}
