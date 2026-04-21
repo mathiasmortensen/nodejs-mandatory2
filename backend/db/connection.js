@@ -1,7 +1,7 @@
-import Database from 'better-sqlite3'
+import Database from 'better-sqlite3';
 
-const db = new Database('mandatory2.db')
+const db = new Database('mandatory2.db');
 
-db.pragma('journal_mode = WAL')
+db.pragma('journal_mode = WAL');
 
-export default db
+export default db;

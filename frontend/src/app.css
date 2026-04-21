@@ -6,10 +6,10 @@
 
 body {
   min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   color: #e5e7eb;
   background-color: #111315;
-  background-image: url("/raccoonbg.jpg");
+  background-image: url('/raccoonbg.jpg');
 }
 
 #app {
@@ -125,20 +125,20 @@ img {
   display: block;
 }
 
-  .top-navbar-div,
-  .footer-inner {
-    height: auto;
-    min-height: 72px;
-    padding: 12px 14px;
-  }
+.top-navbar-div,
+.footer-inner {
+  height: auto;
+  min-height: 72px;
+  padding: 12px 14px;
+}
 
-  .navbar-div-links {
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+.navbar-div-links {
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-  .login-div,
-  .signup-div,
-  .profile-card {
-    padding: 20px;
-  }
+.login-div,
+.signup-div,
+.profile-card {
+  padding: 20px;
+}

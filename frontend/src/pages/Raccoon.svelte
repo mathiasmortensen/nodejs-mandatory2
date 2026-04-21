@@ -14,12 +14,12 @@
 </script>
 
 <svelte:head>
-  <title>Raccoon Gallery</title>
+  <title>Vaskebjørn</title>
 </svelte:head>
 
 <div class="profile-page">
   <div class="profile-card">
-    <h1>Raccoon Gallery</h1>
+    <h1>Vaskebjørnen</h1>
 
     <p>
       I Europa er det ulovligt at eje en vaskebjørn. Vaskebjørne bliver set som

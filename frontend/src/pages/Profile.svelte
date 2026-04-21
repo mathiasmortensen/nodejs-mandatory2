@@ -2,7 +2,7 @@
   import { auth, logout } from "../util/auth.svelte.js";
 </script>
 
-<svelte:head><title>Profile Page</title></svelte:head>
+<svelte:head><title>Profil</title></svelte:head>
 
 <div class="profile-page">
   <div class="profile-card">
