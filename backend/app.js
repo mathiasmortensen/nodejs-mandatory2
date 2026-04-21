@@ -1,17 +1,17 @@
-import express from 'express'
-import 'dotenv/config'
-import { rateLimit } from 'express-rate-limit'
-import helmet from 'helmet'
-import session from 'express-session'
-import authRouter from './routers/authRouter.js'
-import path from 'path'
-import './db/createDatabase.js'
+import express from 'express';
+import 'dotenv/config';
+import { rateLimit } from 'express-rate-limit';
+import helmet from 'helmet';
+import session from 'express-session';
+import authRouter from './routers/authRouter.js';
+import path from 'path';
+import './db/createDatabase.js';
 
-const app = express()
+const app = express();
 
-app.use(express.static('../frontend/dist'))
+app.use(express.static('../frontend/dist'));
 
-app.use(express.json())
+app.use(express.json());
 
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -20,9 +20,9 @@ const generalLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
   ipv6Subnet: 56, // Set to 60 or 64 to be less aggressive, or 52 or 48 to be more aggressive
   // store: ... , // Redis, Memcached, etc. See below.
-})
+});
 
-app.use(generalLimiter)
+app.use(generalLimiter);
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -30,11 +30,11 @@ const authLimiter = rateLimit({
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   ipv6Subnet: 56,
-})
+});
 
-app.use('/auth', authLimiter)
+app.use('/auth', authLimiter);
 
-app.use(helmet())
+app.use(helmet());
 
 app.use(
   session({
@@ -42,10 +42,10 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, maxAge: 15 * 60 * 1000 },
-  })
+  });
 )
 
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
 
 const PORT = process.env.PORT ?? 8080
 
@@ -54,8 +54,8 @@ app.get('/{*splat}', (req, res) => {
     return res.status(404).json({ fejlBesked: 'Du har ikke adgang...' })
   }
   return res.sendFile(path.resolve('../frontend/dist/index.html'))
-})
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}`)
-})
+});

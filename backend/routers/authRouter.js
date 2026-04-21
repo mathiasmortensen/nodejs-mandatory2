@@ -103,7 +103,7 @@ router.post('/forgot-password', async (req, res) => {
   const { identifier } = req.body
 
   if (!identifier) {
-    return res.status(400).json({ besked: 'Alle felter skal udfyldes' })
+    return res.status(400).json({ errorMessage: 'Alle felter skal udfyldes' })
   }
 
   try {
@@ -112,7 +112,7 @@ router.post('/forgot-password', async (req, res) => {
       : db.prepare(`SELECT email FROM users WHERE username = ?`).get(identifier)
 
     if (!user) {
-      return res.status(200).json({ besked: 'Hvis brugeren findes, er der sendt en mail' })
+      return res.status(200).json({ errorMessage: 'Hvis brugeren findes, er der sendt en mail' })
     }
 
     const testAccount = await nodemailer.createTestAccount()
@@ -135,10 +135,10 @@ router.post('/forgot-password', async (req, res) => {
       html: 'Mail sendt💌',
     })
 
-    return res.status(200).json({ besked: 'Hvis brugeren findes, er der sendt en mail' })
+    return res.status(200).json({ errorMessage: 'Hvis brugeren findes, er der sendt en mail' })
   } catch (error) {
     console.log(error)
-    return res.status(500).json({ besked: 'En fejl opstod..' })
+    return res.status(500).json({ errorMessage: 'En fejl opstod..' })
   }
 })
 

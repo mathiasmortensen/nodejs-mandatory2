@@ -30,4 +30,4 @@ db.prepare(
 `
 ).run(testEmail, testUsername, hash)
 
-console.log('Seeding er kørt er kørt..')
+console.log('Seeding er kørt..')
