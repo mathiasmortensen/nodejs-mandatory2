@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  color: #e5e7eb;
+  background-color: #111315;
+  background-image: url("/raccoonbg.jpg");
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+}
+
+.top-navbar,
+.footer {
+  background: #16181b;
+  border-top: 1px solid #2a2d31;
+  border-bottom: 1px solid #2a2d31;
+}
+
+.top-navbar-div,
+.footer-inner {
+  width: 960px;
+  max-width: 100%;
+  height: 72px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-a-inner,
+.navbar-div-links a {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.navbar-a-inner {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.navbar-div-links {
+  display: flex;
+  gap: 20px;
+}
+
+.top-div,
+.profile-page {
+  width: 100%;
+  max-width: 500px;
+  display: grid;
+  gap: 18px;
+}
+
+.login-div,
+.signup-div,
+.profile-card {
+  background: #1b1d21;
+  color: #e5e7eb;
+  border: 1px solid #2f3338;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+form {
+  display: grid;
+  gap: 14px;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: 2.2rem;
+}
+
+p {
+  color: #b4bac2;
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+
+input,
+.btn {
+  width: 100%;
+  border-radius: 8px;
+  padding: 14px;
+  font: inherit;
+}
+
+input {
+  border: 1px solid #3a3f46;
+  color: #e5e7eb;
+  background: #121418;
+}
+
+.btn {
+  border: 1px solid #3a3f46;
+  background: #2e3238;
+  color: #f3f4f6;
+}
+
+.btn:hover {
+  background: #3a3f46;
+}
+
+img {
+  width: 100%;
+  margin-top: 14px;
+  border-radius: 10px;
+  display: block;
+}
+
+  .top-navbar-div,
+  .footer-inner {
+    height: auto;
+    min-height: 72px;
+    padding: 12px 14px;
+  }
+
+  .navbar-div-links {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .login-div,
+  .signup-div,
+  .profile-card {
+    padding: 20px;
+  }
