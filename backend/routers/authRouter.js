@@ -9,7 +9,7 @@ function isAuthenticated(req, res, next) {
   if (req.session && req.session.userId) {
     return next();
   }
-  return res.status(401).send({ errorMessage: 'Ingen adgang...' });
+  return res.status(401).json({ message: 'Ingen adgang...' });
 }
 
 router.post('/signup', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/signup', async (req, res) => {
   const saltRounds = 10;
 
   if (!email || !username || !password) {
-    return res.status(400).send('Alle felter skal udfyldes!!');
+    return res.status(400).json({ message: 'Alle felter skal udfyldes!!' });
   }
 
   try {
@@ -33,9 +33,11 @@ VALUES (?, ?, ?)
       .run(email, username, hash);
 
     req.session.userId = Number(result.lastInsertRowid);
-    return res.status(201).send('Bruger oprettet');
+    return res.status(201).json({ message: 'Bruger oprettet' });
   } catch (error) {
-    res.status(500).send('Der skete en fejl under oprettelsen af din bruger');
+    return res
+      .status(500)
+      .json({ message: 'Der skete en fejl under oprettelsen af din bruger' });
   }
 });
 
@@ -43,7 +45,7 @@ router.post('/login', async (req, res) => {
   const { identifier, password } = req.body;
 
   if (!identifier || !password) {
-    return res.status(400).send('Alle felter skal udfyldes!!!');
+    return res.status(400).json({ message: 'Alle felter skal udfyldes!!!' });
   }
 
   try {
@@ -52,30 +54,30 @@ router.post('/login', async (req, res) => {
       .all(identifier, identifier);
 
     if (users.length === 0) {
-      return res.status(401).send('Forkert email/username eller password');
+      return res.status(401).json({ message: 'Forkert email/username eller password' });
     }
 
     const user = users[0];
     const found = await bcrypt.compare(password, user.password_hash);
 
     if (!found) {
-      return res.status(401).send('Forkert email/username eller password');
+      return res.status(401).json({ message: 'Forkert email/username eller password' });
     }
 
     req.session.userId = user.id;
-    return res.status(200).send('Login successfuldt');
+    return res.status(200).json({ message: 'Login successfuldt' });
   } catch (error) {
-    return res.status(500).send('Der skete en fejl..');
+    return res.status(500).json({ message: 'Der skete en fejl..' });
   }
 });
 
 router.post('/logout', isAuthenticated, (req, res) => {
   req.session.destroy(err => {
     if (err) {
-      return res.status(500).send('Der skete en fejl under logout');
+      return res.status(500).json({ message: 'Der skete en fejl under logout' });
     }
     res.clearCookie('connect.sid');
-    return res.status(200).send('Logout successful');
+    return res.status(200).json({ message: 'Logout successful' });
   });
 });
 
@@ -86,34 +88,32 @@ router.get('/me', isAuthenticated, async (req, res) => {
       .get(req.session.userId);
 
     if (!user) {
-      return res.status(404).send('Bruger ikke fundet');
+      return res.status(404).json({ message: 'Bruger ikke fundet' });
     }
 
     return res.status(200).json(user);
   } catch (error) {
-    return res.status(500).send('Der skete desværre en fejl...');
+    return res.status(500).json({ message: 'Der skete desværre en fejl...' });
   }
 });
 
+const testAccount = await nodemailer.createTestAccount();
 
-    const testAccount = await nodemailer.createTestAccount();
-
-    const transporter = nodemailer.createTransport({
-      host: testAccount.smtp.host,
-      port: testAccount.smtp.port,
-      secure: testAccount.smtp.secure,
-      auth: {
-        user: testAccount.user,
-        pass: testAccount.pass,
-      },
-    });
-
+const transporter = nodemailer.createTransport({
+  host: testAccount.smtp.host,
+  port: testAccount.smtp.port,
+  secure: testAccount.smtp.secure,
+  auth: {
+    user: testAccount.user,
+    pass: testAccount.pass,
+  },
+});
 
 router.post('/forgot-password', async (req, res) => {
   const { identifier } = req.body;
 
   if (!identifier) {
-    return res.status(400).json({ errorMessage: 'Alle felter skal udfyldes' });
+    return res.status(400).json({ message: 'Alle felter skal udfyldes' });
   }
 
   try {
@@ -122,7 +122,7 @@ router.post('/forgot-password', async (req, res) => {
       : db.prepare(`SELECT email FROM users WHERE username = ?`).get(identifier);
 
     if (!user) {
-      return res.status(200).json({ errorMessage: 'Hvis brugeren findes, er der sendt en mail' });
+      return res.status(200).json({ message: 'Hvis brugeren findes, er der sendt en mail' });
     }
 
     const info = await transporter.sendMail({
@@ -138,9 +138,9 @@ router.post('/forgot-password', async (req, res) => {
       console.log(`Nodemailer preview URL: ${previewUrl}`);
     }
 
-    return res.status(200).json({ sucessMessage: 'Hvis brugeren findes, er der sendt en mail' });
+    return res.status(200).json({ message: 'Hvis brugeren findes, er der sendt en mail' });
   } catch (error) {
-    return res.status(500).json({ errorMessage: 'En fejl opstod..' });
+    return res.status(500).json({ message: 'En fejl opstod..' });
   }
 });
 
