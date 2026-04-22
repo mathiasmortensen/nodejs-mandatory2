@@ -18,22 +18,28 @@ npm install
 
 ## Start the project
 
-Run the backend first:
-
-```bash
-cd backend
-node app.js
-```
-
-## Build
-
-To create a production build for the frontend:
+First you need to build the frontend:
 
 ```bash
 cd frontend
 npm run build
 ```
 
-## OR you can be even smarter, and use npm run start from the backend directory..
+After this, you run the backend
+
+```bash
+cd ../backend
+node app.js
+```
+
+
+## But wait.. There's a better way??
+
+
+```bash
+cd backend
+npm start
+```
+This runs the custom script inside the package.json, which first builds the frontend and starts the backend afterwards...
 
 The frontend uses the images in the `public` folder, and the backend serves the API routes.
