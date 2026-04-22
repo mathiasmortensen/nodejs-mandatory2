@@ -27,8 +27,8 @@ export async function login(identifier, password) {
   const response = await fetchPost('/auth/login', { identifier, password });
 
   if (!response || !response.ok) {
-    const error = response ? await response.text() : 'Ukendt fejl';
-    toastr.error(error);
+    const errorMessage = await response.json();
+    toastr.error(errorMessage.message);
     return;
   }
 
@@ -45,8 +45,8 @@ export async function signup(email, username, password) {
   });
 
   if (!response || !response.ok) {
-    const error = response ? await response.text() : 'Ukendt fejl';
-    toastr.error(error);
+    const errorMessage = await response.json();
+    toastr.error(errorMessage.message);
     return;
   }
 
@@ -59,8 +59,8 @@ export async function logout() {
   const response = await fetchPost('/auth/logout', {});
 
   if (!response || !response.ok) {
-    const error = response ? await response.text() : 'Ukendt fejl';
-    toastr.error(error);
+    const errorMessage = await response.json();
+    toastr.error(errorMessage.message);
     return;
   }
 
@@ -75,8 +75,8 @@ export async function forgotPassword(identifier) {
   const response = await fetchPost('/auth/forgot-password', { identifier });
 
   if (!response || !response.ok) {
-    const error = response ? await response.text() : 'Ukendt fejl';
-    toastr.error(error);
+    const errorMessage = await response.json();
+    toastr.error(errorMessage.message);
     return;
   }
 

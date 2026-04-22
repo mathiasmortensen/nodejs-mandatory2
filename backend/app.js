@@ -47,6 +47,10 @@ app.use(
 
 app.use('/auth', authRouter);
 
+app.get('/*splat', (req, res) => {
+  res.sendFile(path.resolve('../frontend/dist/index.html'));
+});
+
 const PORT = process.env.PORT ?? 8080;
 
 app.listen(PORT, () => {

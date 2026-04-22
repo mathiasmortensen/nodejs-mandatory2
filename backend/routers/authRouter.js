@@ -35,9 +35,7 @@ VALUES (?, ?, ?)
     req.session.userId = Number(result.lastInsertRowid);
     return res.status(201).json({ message: 'Bruger oprettet' });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: 'Der skete en fejl under oprettelsen af din bruger' });
+    return res.status(500).json({ message: 'Der skete en fejl under oprettelsen af din bruger' });
   }
 });
 

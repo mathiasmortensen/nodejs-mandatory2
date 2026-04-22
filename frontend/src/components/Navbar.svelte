@@ -4,9 +4,7 @@
 
 <nav class="wrapper-navbar">
   <div class="inner-navbar">
-  {#if !auth.isAuthenticated }
     <a class="inner-navbar-home" href="/">Mandatory2</a>
-  {/if}
     <div class="inner-navbar-links">
       {#if !auth.isAuthenticated}
         <a href="/login">Login</a>
