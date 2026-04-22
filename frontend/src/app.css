@@ -6,8 +6,8 @@
 
 body {
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: white;
   background-color: #111315;
   background-image: url('/raccoonbg.jpg');
 }
@@ -18,22 +18,15 @@ body {
   flex-direction: column;
 }
 
-main {
-  flex: 1;
-  display: grid;
-  place-items: center;
-  padding: 40px 20px;
-}
-
-.top-navbar,
-.footer {
+.wrapper-navbar,
+.wrapper-footer {
   background: #16181b;
   border-top: 1px solid #2a2d31;
   border-bottom: 1px solid #2a2d31;
 }
 
-.top-navbar-div,
-.footer-inner {
+.inner-navbar,
+.inner-footer {
   width: 960px;
   max-width: 100%;
   height: 72px;
@@ -44,35 +37,57 @@ main {
   justify-content: space-between;
 }
 
-.navbar-a-inner,
-.navbar-div-links a {
-  color: #e5e7eb;
+a {
   text-decoration: none;
+  color: seashell;
 }
 
-.navbar-a-inner {
-  font-weight: 700;
+a:hover {
+  color: silver;
+}
+
+.inner-navbar-home {
+  text-decoration: solid;
   font-size: 1.1rem;
 }
 
-.navbar-div-links {
+.inner-navbar-links {
   display: flex;
   gap: 20px;
 }
 
-.top-div,
-.profile-page {
+.inner-navbar,
+.inner-footer {
+  height: auto;
+  min-height: 72px;
+  padding: 12px 14px;
+}
+
+.inner-navbar-links {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.inner-footer small {
+  color: #b4bac2;
+}
+
+main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+}
+
+.wrapper-page {
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
   display: grid;
   gap: 18px;
 }
 
-.login-div,
-.signup-div,
-.profile-card {
+.inner-page {
   background: #1b1d21;
-  color: #e5e7eb;
   border: 1px solid #2f3338;
   border-radius: 12px;
   padding: 20px;
@@ -84,7 +99,6 @@ form {
 }
 
 h1 {
-  margin-bottom: 12px;
   font-size: 2.2rem;
 }
 
@@ -94,25 +108,22 @@ p {
   margin-bottom: 6px;
 }
 
+
 input,
 .btn {
+  border: 1px solid #3a3f46;
+  color: #e5e7eb;
+  background: #121418;
   width: 100%;
   border-radius: 8px;
   padding: 14px;
   font: inherit;
 }
 
-input {
-  border: 1px solid #3a3f46;
-  color: #e5e7eb;
-  background: #121418;
+.btn {
+  cursor: pointer;
 }
 
-.btn {
-  border: 1px solid #3a3f46;
-  background: #2e3238;
-  color: #f3f4f6;
-}
 
 .btn:hover {
   background: #3a3f46;
@@ -125,20 +136,6 @@ img {
   display: block;
 }
 
-.top-navbar-div,
-.footer-inner {
-  height: auto;
-  min-height: 72px;
-  padding: 12px 14px;
-}
-
-.navbar-div-links {
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.login-div,
-.signup-div,
-.profile-card {
-  padding: 20px;
+#logout-special {
+  cursor: pointer;
 }

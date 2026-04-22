@@ -63,9 +63,8 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.userId = user.id;
-    return res.status(200).send('Login successful');
+    return res.status(200).send('Login successfuldt');
   } catch (error) {
-    console.log(error);
     return res.status(500).send('Der skete en fejl..');
   }
 });
@@ -73,7 +72,6 @@ router.post('/login', async (req, res) => {
 router.post('/logout', isAuthenticated, (req, res) => {
   req.session.destroy(err => {
     if (err) {
-      console.log(err);
       return res.status(500).send('Der skete en fejl under logout');
     }
     res.clearCookie('connect.sid');
@@ -93,10 +91,23 @@ router.get('/me', isAuthenticated, async (req, res) => {
 
     return res.status(200).json(user);
   } catch (error) {
-    console.log(error);
     return res.status(500).send('Der skete desværre en fejl...');
   }
 });
+
+
+    const testAccount = await nodemailer.createTestAccount();
+
+    const transporter = nodemailer.createTransport({
+      host: testAccount.smtp.host,
+      port: testAccount.smtp.port,
+      secure: testAccount.smtp.secure,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+
 
 router.post('/forgot-password', async (req, res) => {
   const { identifier } = req.body;
@@ -114,18 +125,6 @@ router.post('/forgot-password', async (req, res) => {
       return res.status(200).json({ errorMessage: 'Hvis brugeren findes, er der sendt en mail' });
     }
 
-    const testAccount = await nodemailer.createTestAccount();
-
-    const transporter = nodemailer.createTransport({
-      host: testAccount.smtp.host,
-      port: testAccount.smtp.port,
-      secure: testAccount.smtp.secure,
-      auth: {
-        user: testAccount.user,
-        pass: testAccount.pass,
-      },
-    });
-
     const info = await transporter.sendMail({
       from: 'Mandatory2 awesome siden',
       to: user.email,
@@ -139,9 +138,8 @@ router.post('/forgot-password', async (req, res) => {
       console.log(`Nodemailer preview URL: ${previewUrl}`);
     }
 
-    return res.status(200).json({ errorMessage: 'Hvis brugeren findes, er der sendt en mail' });
+    return res.status(200).json({ sucessMessage: 'Hvis brugeren findes, er der sendt en mail' });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ errorMessage: 'En fejl opstod..' });
   }
 });

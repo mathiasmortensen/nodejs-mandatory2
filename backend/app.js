@@ -51,7 +51,7 @@ const PORT = process.env.PORT ?? 8080;
 
 app.get('/{*splat}', (req, res) => {
   if (req.path.startsWith('/auth')) {
-    return res.status(404).json({ fejlBesked: 'Du har ikke adgang...' });
+    return res.status(404).json({ errorMessage: 'Du har ikke adgang...' });
   }
   return res.sendFile(path.resolve('../frontend/dist/index.html'));
 });

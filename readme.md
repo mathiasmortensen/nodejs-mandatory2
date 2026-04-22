@@ -14,7 +14,7 @@ cd ../frontend
 npm install
 ```
 
-2. Make sure your environment variables are set... Frontend: (VITE_BASE_URL), Backend: (SESSION_SECRET)..
+2. Make sure your environment variables are set... Frontend: (VITE_BASE_URL), Backend: (SESSION_SECRET, testUsername, testPassword, testEmail and PORT) 
 
 ## Start the project
 

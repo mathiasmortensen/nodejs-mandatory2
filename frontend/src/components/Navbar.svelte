@@ -1,17 +1,25 @@
 <script>
-  import { auth } from "../util/auth.svelte.js";
+  import { auth, logout } from '../util/auth.svelte.js';
 </script>
 
-<nav class="top-navbar">
-  <div class="top-navbar-div">
-    <a class="navbar-a-inner" href="/">Mandatory2</a>
-    <div class="navbar-div-links">
+<nav class="wrapper-navbar">
+  <div class="inner-navbar">
+    <a class="inner-navbar-home" href="/">Mandatory2</a>
+    <div class="inner-navbar-links">
       {#if !auth.isAuthenticated}
         <a href="/login">Login</a>
       {/if}
       {#if auth.isAuthenticated}
         <a href="/profile">Profile</a>
         <a href="/raccoon">Raccoon Gallery</a>
+        <a
+          id="logout-special"
+          href="/"
+          onclick={event => {
+            event.preventDefault();
+            logout();
+          }}>Log ud</a
+        >
       {/if}
     </div>
   </div>

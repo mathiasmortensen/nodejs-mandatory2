@@ -1,11 +1,11 @@
 <script>
-  import { auth, logout } from "../util/auth.svelte.js";
+  import { auth, logout } from '../util/auth.svelte.js';
 </script>
 
 <svelte:head><title>Profil</title></svelte:head>
 
-<div class="profile-page">
-  <div class="profile-card">
+<div class="wrapper-page">
+  <div class="inner-page">
     <h1>Profile</h1>
     {#if auth.user}
       <p>Username: {auth.user.username}</p>

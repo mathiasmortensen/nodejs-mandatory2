@@ -1,13 +1,13 @@
 <script>
-  import { Router, Route } from "svelte5-router";
-  import { onMount } from "svelte";
-  import Navbar from "./components/Navbar.svelte";
-  import Footer from "./components/Footer.svelte";
-  import Login from "./pages/Login.svelte";
-  import { authMe } from "./util/auth.svelte.js";
-  import "toastr/build/toastr.min.css";
-  import AuthProfile from "./components/AuthProfile.svelte";
-  import AuthRaccoon from "./components/AuthRaccoon.svelte";
+  import { Router, Route } from 'svelte5-router';
+  import { onMount } from 'svelte';
+  import Navbar from './components/Navbar.svelte';
+  import Footer from './components/Footer.svelte';
+  import Login from './pages/Login.svelte';
+  import { authMe } from './util/auth.svelte.js';
+  import 'toastr/build/toastr.min.css';
+  import AuthProfile from './components/AuthProfile.svelte';
+  import AuthRaccoon from './components/AuthRaccoon.svelte';
 
   onMount(async () => {
     await authMe();
